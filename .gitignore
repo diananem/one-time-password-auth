@@ -17,6 +17,7 @@ firebase-debug.log*
 # .firebaserc
 
 service_account.json
+twilio_account.js
 
 # Runtime data
 pids
