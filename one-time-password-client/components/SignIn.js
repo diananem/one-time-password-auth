@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { Input, Button } from "react-native-elements";
 import axios from "axios";
+import firebase from "firebase";
 
 import { ROOT_URL } from "../utils";
 
@@ -14,11 +15,11 @@ class SignIn extends Component {
   handleSubmit = async () => {
     const { phone, code } = this.state;
     try {
-      let response = await axios.post(`${ROOT_URL}/verifyPassword`, {
+      let { data } = await axios.post(`${ROOT_URL}/verifyPassword`, {
         phone,
         code
       });
-      console.log(response);
+      firebase.auth().signInWithCustomToken(data.token);
     } catch (err) {
       console.log(err);
     }
